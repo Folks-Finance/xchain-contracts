@@ -54,11 +54,14 @@ export class NodeManagerUtil {
     ];
   }
 
-  public static encodeConstantNodeDefinition(constant: number): NodeDefinitionData {
+  public static encodeConstantNodeDefinition(constant: number | bigint): NodeDefinitionData {
     return [NodeType.CONSTANT, abi.encode(["uint256"], [constant.toString()]), []];
   }
 
-  public static encodeExternalNodeDefinition(externalOracleAddress: string): NodeDefinitionData {
-    return [NodeType.EXTERNAL, abi.encode(["address"], [externalOracleAddress]), []];
+  public static encodeExternalNodeDefinition(
+    externalOracleAddress: string,
+    parentNodes: string[] = []
+  ): NodeDefinitionData {
+    return [NodeType.EXTERNAL, abi.encode(["address"], [externalOracleAddress]), parentNodes];
   }
 }
