@@ -7,7 +7,7 @@ import "./libraries/Messages.sol";
 contract CCIPDataAdapter is CCIPAdapter {
     /**
      * @notice Constructor
-     * @param admin The default admin for AcccountManager
+     * @param admin The default admin for AccountManager
      * @param ccipRouter The CCIP router to relay messages using
      * @param bridgeRouter The Bridge Router to route messages through
      */
