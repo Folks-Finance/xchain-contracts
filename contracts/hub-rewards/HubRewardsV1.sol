@@ -5,8 +5,8 @@ import "@openzeppelin/contracts/access/extensions/AccessControlDefaultAdminRules
 import "@openzeppelin/contracts/utils/math/Math.sol";
 
 import "../bridge/libraries/Messages.sol";
-import "./interfaces/IAccountManager.sol";
-import "./LoanManager.sol";
+import "../hub/interfaces/IAccountManager.sol";
+import "../hub/LoanManager.sol";
 
 contract RewardsV1 is AccessControlDefaultAdminRules {
     struct PoolEpoch {

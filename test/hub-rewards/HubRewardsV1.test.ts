@@ -7,6 +7,7 @@ import {
   MockAccountManager__factory,
   RewardsV1__factory,
 } from "../../typechain-types";
+import { UserPoolRewards } from "../hub/libraries/assets/loanData";
 import {
   BYTES32_LENGTH,
   convertEVMAddressToGenericAddress,
@@ -16,7 +17,6 @@ import {
   getRandomBytes,
 } from "../utils/bytes";
 import { SECONDS_IN_DAY, getLatestBlockTimestamp, getRandomInt } from "../utils/time";
-import { UserPoolRewards } from "./libraries/assets/loanData";
 
 const ONE_DAY = BigInt(86400);
 const ONE_WEEK = ONE_DAY * BigInt(7);
@@ -27,7 +27,7 @@ interface Epoch {
   totalRewards: bigint;
 }
 
-describe("RewardsV1 (unit tests)", () => {
+describe("HubRewardsV1 (unit tests)", () => {
   const DEFAULT_ADMIN_ROLE = getEmptyBytes(BYTES32_LENGTH);
   const LISTING_ROLE = ethers.keccak256(convertStringToBytes("LISTING"));
 
@@ -331,8 +331,8 @@ describe("RewardsV1 (unit tests)", () => {
     });
   });
 
-  describe("Update epoch total points", () => {
-    it("Should successfully update epoch total points", async () => {
+  describe("Update epoch total rewards", () => {
+    it("Should successfully update epoch total rewards", async () => {
       const { admin, rewardsV1, poolId, totalRewards: oldTotalRewards } = await loadFixture(addEpochFixture);
 
       // verify old total rewards
@@ -350,7 +350,7 @@ describe("RewardsV1 (unit tests)", () => {
         .withArgs(poolId, epochIndex, newTotalRewards);
     });
 
-    it("Should fail to update epoch after end", async () => {
+    it("Should fail to update epoch total rewards after end", async () => {
       const { admin, rewardsV1, poolId, end, totalRewards } = await loadFixture(addEpochFixture);
 
       // update before end
@@ -367,7 +367,7 @@ describe("RewardsV1 (unit tests)", () => {
         .withArgs(poolId, epochIndex, end);
     });
 
-    it("Should fail to update epoch when sender is not listing admin", async () => {
+    it("Should fail to update epoch total rewards when sender is not listing admin", async () => {
       const { user, rewardsV1, poolId, totalRewards } = await loadFixture(addEpochFixture);
 
       // update

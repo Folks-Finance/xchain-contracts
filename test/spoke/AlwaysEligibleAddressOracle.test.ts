@@ -16,14 +16,14 @@ describe("AlwaysEligibleAddressOracle (unit tests)", () => {
   }
 
   describe("Deployment", () => {
-    it("Should successfuly deploy", async () => {
+    it("Should successfully deploy", async () => {
       const { addressOracle } = await loadFixture(deployAddressOracleFixture);
       expect(await addressOracle.getAddress()).to.not.equal(ethers.ZeroAddress);
     });
   });
 
   describe("Is Eligible", () => {
-    it("Should successfuly return true for is eligible", async () => {
+    it("Should successfully return true for is eligible", async () => {
       const { addressOracle } = await loadFixture(deployAddressOracleFixture);
 
       // check eligibility
